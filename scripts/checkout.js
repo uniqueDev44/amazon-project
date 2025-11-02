@@ -122,10 +122,17 @@ updateLink.forEach((link) => {
 
 const saveLink = document.querySelectorAll('.js-save-quantity-link');
 saveLink.forEach((link) => {
+  const productId = link.dataset.productId;
+  const quantityInput = document.querySelector(`.js-save-quantity-input-${productId}`);
+  
   link.addEventListener('click', () => {
-    const productId = link.dataset.productId;
-    const quantityInput = document.querySelector(`.js-save-quantity-input-${productId}`);
     handleSaveQuantityLink(productId, quantityInput)
+  })
+
+  quantityInput.addEventListener('keydown', (event) => {
+    if(event.key === 'Enter'){
+      handleSaveQuantityLink(productId, quantityInput);
+    }
   })
 })
 
