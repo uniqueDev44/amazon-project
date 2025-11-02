@@ -11,6 +11,8 @@ export const cart = [
 ];
 
 export function addToCart(productId) {
+  const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
+  const quantity = Number(quantitySelector.value);
   let matchingItem
   cart.forEach((cartItem) => {
     if (productId === cartItem.productId) {
@@ -19,11 +21,11 @@ export function addToCart(productId) {
 
   })
   if (matchingItem) {
-    matchingItem.quantity +=1
+    matchingItem.quantity += quantity
   }else{
     cart.push({
       productId: productId,
-      quantity: 1
+      quantity: quantity
     })
   }
   console.log(cart)
