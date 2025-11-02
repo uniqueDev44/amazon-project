@@ -1,4 +1,6 @@
-import { cart, removeFromCart } from "../data/cart.js";
+import { cart,
+  removeFromCart,
+  saveQuantityLink } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
@@ -126,16 +128,6 @@ saveLink.forEach((link) => {
     handleSaveQuantityLink(productId, quantityInput)
   })
 })
-
-function saveQuantityLink(productId, newQuantity) {
-  let matchingItem;
-  cart.forEach((cartItem) => {
-    if (productId === cartItem.productId) {
-      matchingItem = cartItem;
-    }  
-  })
-  matchingItem.quantity = newQuantity;
-}
 
 function handleSaveQuantityLink(productId, quantityInput ) {
   const container = document.querySelector(`.js-cart-item-container-${productId}`);
