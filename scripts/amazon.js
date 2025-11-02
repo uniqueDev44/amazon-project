@@ -1,6 +1,6 @@
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
-import { cart, addToCart } from "../data/cart.js";
+import { cart, addToCart, calculateCartQuantity } from "../data/cart.js";
 
 let productHtml = "";
 products.forEach((product) => {
@@ -64,8 +64,14 @@ addToCartButton.forEach(button => {
   button.addEventListener('click', () => {
     const productId = button.dataset.productId;
     addToCart(productId)
+    updateCartQuautity();
   })
 })
+function updateCartQuautity() {
+  let cartQuantity = calculateCartQuantity();
+  document.querySelector('.js-cart-quantity')
+    .innerHTML = cartQuantity
+}
 
 
 

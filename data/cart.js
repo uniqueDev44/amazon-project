@@ -9,6 +9,7 @@ export const cart = [
     quantity: 1
   }
 ];
+
 export function addToCart(productId) {
   let matchingItem
   cart.forEach((cartItem) => {
@@ -26,4 +27,13 @@ export function addToCart(productId) {
     })
   }
   console.log(cart)
+}
+
+export function calculateCartQuantity() {
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity
+  })
+
+  return cartQuantity;
 }
