@@ -1,5 +1,5 @@
 
-export const cart = [
+export const cart = JSON.parse(localStorage.getItem('cartitem')) || [
   {
     productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
     quantity: 2
@@ -28,6 +28,7 @@ export function addToCart(productId) {
       quantity: quantity
     })
   }
+  saveToStorage()
   console.log(cart)
 }
 
@@ -38,4 +39,8 @@ export function calculateCartQuantity() {
   })
 
   return cartQuantity;
+}
+
+function saveToStorage() {
+  localStorage.setItem('cartitem', JSON.stringify(cart))
 }
