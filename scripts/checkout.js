@@ -1,11 +1,10 @@
 import { cart,
   removeFromCart,
   saveQuantityLink } from "../data/cart.js";
-import { deleveryOptions } from "../data/deleveryOption.js";
+import { deliveryOptions } from "../data/deleveryOption.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
-
 
 let matchingProductHtml = '';
 cart.forEach((cartItem) => {
@@ -16,10 +15,24 @@ cart.forEach((cartItem) => {
       matchingProduct = product;
     }
   })
+
+  let deliveryOption;
+  deliveryOptions.forEach((option) => {
+    if (option.id === cartItem.deliveryOptionId) {
+      deliveryOption = option
+    }
+     
+  })
+ 
+
+  const today = dayjs();
+  const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
+  const dateString = deliveryDate.format('dddd, MMMM D');
+
   matchingProductHtml += `
     <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
       <div class="delivery-date">
-        Delivery date: Tuesday, June 21
+        Delivery date: ${dateString}
       </div>
 
       <div class="cart-item-details-grid">
@@ -58,7 +71,7 @@ cart.forEach((cartItem) => {
             Choose a delivery option:
           </div>
           
-          ${renderDeleveryOption(matchingProduct, cartItem)}
+          ${renderDeliveryOption(matchingProduct, cartItem)}
         </div>
       </div>
     </div>
@@ -127,19 +140,17 @@ function updateQuantityLabel() {
 }
 
 
-function renderDeleveryOption(matchingProduct, cartItem) {
+function renderDeliveryOption(matchingProduct, cartItem) {
   let html = '';
 
-  deleveryOptions.forEach((deleveryOption) => {
+  deliveryOptions.forEach((deliveryOption) => {
     const today = dayjs();
-    const deleveryDate = today.add(deleveryOption.deleveryDays, 'days');
-    const dateString = deleveryDate.format('dddd, MMMM D');
+    const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
+    const dateString = deliveryDate.format('dddd, MMMM D');
 
-    const priceString = deleveryOption.priceCents === 0 ? 'FREE' : formatCurrency(deleveryOption.priceCents)
+    const priceString = deliveryOption.priceCents === 0 ? 'FREE' : formatCurrency(deliveryOption.priceCents)
 
-    const ischecked = deleveryOption.id === cartItem.deleveryOptionId;
-
-
+    const ischecked = deliveryOption.id === cartItem.deliveryOptionId;
     
     html += `<div class="delivery-option">
       <input type="radio" ${ischecked ? 'checked' : ''}
@@ -150,7 +161,7 @@ function renderDeleveryOption(matchingProduct, cartItem) {
           ${dateString}
         </div>
         <div class="delivery-option-price">
-          $${priceString}
+          $${priceString} - SHIPPING
         </div>
       </div>
     </div>
