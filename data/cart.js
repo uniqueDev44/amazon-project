@@ -64,6 +64,6 @@ export function saveQuantityLink(productId, newQuantity) {
   matchingItem.quantity = newQuantity;
 }
 
-function saveToStorage() {
+export function saveToStorage() {
   localStorage.setItem('cartitem', JSON.stringify(cart))
 }
