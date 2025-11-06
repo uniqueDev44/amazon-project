@@ -25,9 +25,10 @@ function renderOrderSummary() {
       if (option.id === cartItem.deliveryOptionId) {
         deliveryOption = option
       }
-      
+      deliveryOption = deliveryOptions[0];
     })
-  
+    
+    console.log(cartItem)
 
     const today = dayjs();
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
