@@ -19,6 +19,9 @@ export function renderPaymentSummary() {
       if(cartItem.deliveryOptionId === option.id) {
         deliveryOption = option 
       }
+      if (deliveryOption === undefined) {
+        deliveryOption = deliveryOptions[0]
+      }     
     })
 
     productPriceCents += matchingProduct.priceCents * cartItem.quantity;
