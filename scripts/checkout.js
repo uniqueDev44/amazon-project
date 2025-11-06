@@ -180,7 +180,12 @@ document.querySelectorAll('.js-delivery-option')
   .forEach((deleveryOption) => {
     deleveryOption.addEventListener('click', () => {
       const {productId, deliveryOptionId} = deleveryOption.dataset
-      let matchingItem;
+      UpdateDeliveryDateOption(productId, deliveryOptionId)
+    })
+  })
+
+  function UpdateDeliveryDateOption(productId, deliveryOptionId) {
+    let matchingItem;
       cart.forEach((cartItem) => {
         if (productId === cartItem.productId) {
           matchingItem = cartItem
@@ -188,5 +193,4 @@ document.querySelectorAll('.js-delivery-option')
       })
       matchingItem.deliveryOptionId = deliveryOptionId
       saveToStorage()
-    })
-  })
+  }

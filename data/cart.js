@@ -67,3 +67,4 @@ export function saveQuantityLink(productId, newQuantity) {
 export function saveToStorage() {
   localStorage.setItem('cartitem', JSON.stringify(cart))
 }
+
