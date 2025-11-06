@@ -1,7 +1,7 @@
 import { cart,
   removeFromCart,
   saveQuantityLink,
-  saveToStorage } from "../data/cart.js";
+  UpdateDeliveryDateOption } from "../data/cart.js";
 import { deliveryOptions } from "../data/deleveryOption.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
@@ -184,13 +184,4 @@ document.querySelectorAll('.js-delivery-option')
     })
   })
 
-  function UpdateDeliveryDateOption(productId, deliveryOptionId) {
-    let matchingItem;
-      cart.forEach((cartItem) => {
-        if (productId === cartItem.productId) {
-          matchingItem = cartItem
-        }
-      })
-      matchingItem.deliveryOptionId = deliveryOptionId
-      saveToStorage()
-  }
+  

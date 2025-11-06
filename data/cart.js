@@ -68,3 +68,13 @@ export function saveToStorage() {
   localStorage.setItem('cartitem', JSON.stringify(cart))
 }
 
+export function UpdateDeliveryDateOption(productId, deliveryOptionId) {
+    let matchingItem;
+      cart.forEach((cartItem) => {
+        if (productId === cartItem.productId) {
+          matchingItem = cartItem
+        }
+      })
+      matchingItem.deliveryOptionId = deliveryOptionId
+      saveToStorage()
+  }
