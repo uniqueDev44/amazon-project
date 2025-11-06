@@ -25,10 +25,8 @@ function renderOrderSummary() {
       if (option.id === cartItem.deliveryOptionId) {
         deliveryOption = option
       }
-      deliveryOption = deliveryOptions[0];
+      deliveryOption = deliveryOptions[0]; // default option
     })
-    
-    console.log(cartItem)
 
     const today = dayjs();
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
@@ -90,8 +88,7 @@ function renderOrderSummary() {
     link.addEventListener('click', () => {
       const productId = link.dataset.productId;
       removeFromCart(productId);
-      const container = document.querySelector(`.js-cart-item-container-${productId}`);
-      container.remove()
+      renderOrderSummary();
     })
   })
 
