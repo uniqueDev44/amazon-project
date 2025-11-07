@@ -8,6 +8,7 @@ import { products } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+import { renderCheckoutHeader } from "./checkoutHeader.js";
 
 
 export function renderOrderSummary() {
@@ -135,19 +136,20 @@ export function renderOrderSummary() {
 
     document.querySelector(`.js-quantity-label-${productId}`)
     .innerHTML = newQuantity;
-    updateQuantityLabel();
+    renderCheckoutHeader();
 
   }
-  updateQuantityLabel()
+  renderCheckoutHeader()
+  // updateQuantityLabel()
 
-  function updateQuantityLabel() {
-    let cartQuantity = 0;
-    cart.forEach((cartItem) => {
-      cartQuantity += cartItem.quantity
-    })
-    document.querySelector('.js-return-to-home-link')
-      .innerHTML = `${cartQuantity} items`;
-  }
+  // function updateQuantityLabel() {
+  //   let cartQuantity = 0;
+  //   cart.forEach((cartItem) => {
+  //     cartQuantity += cartItem.quantity
+  //   })
+  //   document.querySelector('.js-return-to-home-link')
+  //     .innerHTML = `${cartQuantity} items`;
+  // }
 
 
   function renderDeliveryOption(matchingProduct, cartItem) {
