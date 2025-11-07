@@ -25,7 +25,9 @@ export function renderOrderSummary() {
       if (option.id === cartItem.deliveryOptionId) {
         deliveryOption = option
       }
-      deliveryOption = deliveryOptions[0]; // default option
+      if (deliveryOption === undefined){
+        deliveryOption = deliveryOptions[0]; // default option
+      }
     })
 
     const today = dayjs();
