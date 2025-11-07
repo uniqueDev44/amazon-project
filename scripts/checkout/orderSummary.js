@@ -1,7 +1,8 @@
 import { cart,
   removeFromCart,
   saveQuantityLink,
-  UpdateDeliveryDateOption } from "../../data/cart.js";
+  UpdateDeliveryDateOption,
+  saveToStorage } from "../../data/cart.js";
 import { deliveryOptions } from "../../data/deleveryOption.js";
 import { products } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
@@ -111,11 +112,15 @@ export function renderOrderSummary() {
     
     link.addEventListener('click', () => {
       handleSaveQuantityLink(productId, quantityInput)
+      renderPaymentSummary();
+      saveToStorage();
     })
 
     quantityInput.addEventListener('keydown', (event) => {
       if(event.key === 'Enter'){
         handleSaveQuantityLink(productId, quantityInput);
+        renderPaymentSummary();
+        saveToStorage();
       }
     })
   })
